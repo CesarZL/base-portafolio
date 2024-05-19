@@ -37,7 +37,7 @@
                 <x-link
                 :href="route('password.request')"
                 >
-                ¿Olvidaste tu password?
+                ¿Olvidaste tu contraseña?
                 </x-link>
             @endif
             

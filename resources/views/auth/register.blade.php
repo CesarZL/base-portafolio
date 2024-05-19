@@ -16,6 +16,19 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- Tipo de cuenta -->
+        <div class="mt-4">
+            <x-input-label for="rol" :value="__('¿Qué tipo de cuenta deseas crear?')" />
+            <select name="rol" id="rol" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                <option value="1">Cuenta de desarrollador</option>
+                <option value="2">Cuenta de reclutador</option>
+            </select>
+
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+        
+
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Contraseña')" />

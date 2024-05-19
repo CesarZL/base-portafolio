@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
+use function Symfony\Component\String\b;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -32,12 +34,14 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'rol' => ['required', 'numeric', 'between:1,2'], // '1' => 'Developer', '2' => 'RH'
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'rol' => $request->rol,
             'password' => Hash::make($request->password),
         ]);
 
@@ -45,6 +49,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('vacantes.index', absolute: false));
     }
 }
